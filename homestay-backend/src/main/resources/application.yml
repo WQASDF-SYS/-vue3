@@ -1,0 +1,63 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: homestay-backend
+  
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/homestay_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+  
+  # Jackson配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false
+
+# MyBatis Plus配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.homestay.entity
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# JWT配置
+jwt:
+  secret: HomestayManagementSystemSecretKey2024QujingYunnanChina
+  expiration: 86400000  # 24小时(毫秒)
+
+# 文件上传路径
+upload:
+  path: ./uploads
+  url-prefix: /uploads
+
+# 智谱AI配置
+zhipu:
+  api-key: a3ba86387d714a4cb36d7f706e8c8285.COUGjNO0t1QgiiZO
+  model: glm-4-flash
+  base-url: https://open.bigmodel.cn/api/paas/v4
+
+# 日志配置
+logging:
+  level:
+    com.homestay: debug
+    org.springframework.web: info
+

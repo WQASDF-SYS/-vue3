@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # MySQL 数据库
+  mysql:
+    image: mysql:8.0
+    container_name: homestay-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123456
+      MYSQL_DATABASE: homestay
+      MYSQL_USER: homestay
+      MYSQL_PASSWORD: homestay123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ../homestay-backend/sql:/docker-entrypoint-initdb.d
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - homestay-network
+
+  # Spring Boot 后端
+  backend:
+    build:
+      context: ../homestay-backend
+      dockerfile: ../deploy/Dockerfile.backend
+    container_name: homestay-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/homestay?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+      SPRING_DATASOURCE_USERNAME: homestay
+      SPRING_DATASOURCE_PASSWORD: homestay123
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - homestay-network
+
+  # Vue3 用户前端
+  frontend:
+    build:
+      context: ../homestay-front
+      dockerfile: ../deploy/Dockerfile.frontend
+    container_name: homestay-front
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - homestay-network
+
+  # Vue3 管理后台
+  admin:
+    build:
+      context: ../homestay-admin
+      dockerfile: ../deploy/Dockerfile.admin
+    container_name: homestay-admin
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    networks:
+      - homestay-network
+
+volumes:
+  mysql-data:
+
+networks:
+  homestay-network:
+    driver: bridge
+

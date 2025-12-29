@@ -1,0 +1,104 @@
+// 全局样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c0c4cc;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f7fa;
+}
+
+// 通用类
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 页面容器
+.page-container {
+  padding: 20px;
+  background: #f5f7fa;
+  min-height: calc(100vh - 60px);
+}
+
+// 搜索栏
+.search-bar {
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  
+  .el-form-item {
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
+}
+
+// 表格卡片
+.table-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #303133;
+    }
+  }
+}
+
+// 分页
+.pagination-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+// 对话框
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+

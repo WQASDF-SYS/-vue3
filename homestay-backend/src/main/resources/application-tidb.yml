@@ -1,0 +1,14 @@
+# TiDB Cloud 云数据库配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://gateway01.us-east-1.prod.aws.tidbcloud.com:4000/homestay?sslMode=VERIFY_IDENTITY&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: 3GJiPqdqDvPhX1p.root
+    password: S8KYFvEH04hWTibs
+
+# 日志配置 - 生产环境减少日志输出
+logging:
+  level:
+    com.homestay: info
+    org.springframework.web: warn
+

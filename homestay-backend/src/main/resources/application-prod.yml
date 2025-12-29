@@ -1,0 +1,23 @@
+# 生产环境配置 - Railway 部署使用
+server:
+  port: ${PORT:8080}
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DATABASE_URL:jdbc:mysql://gateway01.us-east-1.prod.aws.tidbcloud.com:4000/homestay?sslMode=REQUIRED&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai}
+    username: ${DATABASE_USERNAME:3GJiPqdqDvPhX1p.root}
+    password: ${DATABASE_PASSWORD:S8KYFvEH04hWTibs}
+
+# 日志配置 - 生产环境
+logging:
+  level:
+    com.homestay: info
+    org.springframework.web: warn
+    org.mybatis: warn
+
+# MyBatis Plus - 关闭SQL日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+
