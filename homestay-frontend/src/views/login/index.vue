@@ -151,7 +151,8 @@ const handleLogin = async () => {
         ElMessage.success('管理员登录成功，正在跳转到管理后台...')
         // 管理员跳转到管理后台，传递token
         const token = userStore.token
-        window.location.href = `http://localhost:3001/login?token=${encodeURIComponent(token)}`
+        const adminUrl = import.meta.env.VITE_ADMIN_URL || 'http://localhost:3001'
+        window.location.href = `${adminUrl}/login?token=${encodeURIComponent(token)}`
       } else {
         ElMessage.success('登录成功')
         // 普通用户跳转到用户首页

@@ -160,7 +160,8 @@ const handleLogin = async () => {
         // 普通用户跳转到用户前台，传递token
         const token = userStore.token
         userStore.logout() // 清除本地token
-        window.location.href = `http://localhost:3000/login?token=${encodeURIComponent(token)}`
+        const frontUrl = import.meta.env.VITE_FRONT_URL || 'http://localhost:3000'
+        window.location.href = `${frontUrl}/login?token=${encodeURIComponent(token)}`
       }
     } catch (error) {
       console.error('登录失败:', error)
