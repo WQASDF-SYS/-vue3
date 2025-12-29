@@ -4,7 +4,7 @@ import { useUserStore } from '@/stores/user'
 import router from '@/router'
 
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL ? `${import.meta.env.VITE_API_BASE_URL}/api` : '/api',
   timeout: 30000
 })
 
